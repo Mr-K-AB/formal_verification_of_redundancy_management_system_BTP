@@ -16,15 +16,17 @@ Definition CumulativeIncrement (count : nat) (status : bool): nat  :=
   end.
 
 
+
+
+(* ----------------------------- *)
+(* Listing 3.12 Sensor Isolation *)
+
 (* Isolation *)
 Definition AssignIsolation (status : bool) (count : nat) : bool :=
   match status with
   | true => true
   | false => 4 <? count  
   end .
-
-
-
 
 
 (* Sensor Management  *)
@@ -61,6 +63,14 @@ Definition SensorIsoation ( miscompCount  :  AllMiscomparisonCount ) ( cummHealt
                                                                                           SingleAxisSensorIsolations zmc zh ziso)
   end.
 
+(* ----------------------------- *)
+
+
+
+
+(* ---------------------------------------------- *)
+(* Listing 3.13 OBC Switching Transition function *)
+
 (* Switch Flags *)
 Definition ManageOBCSwitchFlag (commIso : CommIsolated) (obcSwitch : OBCFlag) : OBCFlag:=
   match obcSwitch with
@@ -70,6 +80,7 @@ Definition ManageOBCSwitchFlag (commIso : CommIsolated) (obcSwitch : OBCFlag) : 
                  | _ => notRaised end
   end .
 
+(* ---------------------------------------------- *)
 
 
 
@@ -107,6 +118,9 @@ Definition UpdateMisCompCount  (v1 v2 v3 : nat) (misCC  : nat*nat*nat) : nat*nat
 
 
 
+(* -------------------------------- *)
+(* Listing 3.14 OBC Switching Lemma *)
+
 (* Prove once OBC is switched flag is raised the flag remains raised *)
 
 Lemma RaisedFlagStayForever : forall  (commIso : CommIsolated), ManageOBCSwitchFlag commIso raised = raised.
@@ -115,6 +129,14 @@ Lemma RaisedFlagStayForever : forall  (commIso : CommIsolated), ManageOBCSwitchF
   trivial.
 Qed.
 
+
+(* -------------------------------- *)
+
+
+
+
+(* ---------------------------- *)
+(* Listing 3.15 Isolation Lemma *)
 
 (* When cumulative miscomparison or health failure > 5 leads to isolation *)
 
@@ -126,3 +148,5 @@ destruct isoStatus.
 - apply Nat.ltb_lt. lia.
 Qed.
 
+
+(* ---------------------------- *)

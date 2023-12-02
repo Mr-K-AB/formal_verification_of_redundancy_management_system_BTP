@@ -42,10 +42,16 @@ Inductive sensorId :=
 | second : sensorId
 | third : sensorId.
 
+(* ---------------------------------- *)
+
+
+
+(* --------------------------- *)
+(* Listing 3.7 Current Sensors *)
+
 Inductive axis := 
 | x_ax : axis
 | y_ax : axis
 | z_ax : axis.
 
-
-(* ---------------------------------- *)
+(* --------------------------- *)

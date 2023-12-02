@@ -1,8 +1,19 @@
 Require Import MyProject.library.
 
+
+(* --------------------------- *)
+(* Listing 3.7 Current Sensors *)
+
 (*------------------------------Current Sensors----------------------------*)
 Inductive currSensor : axis ->  Type :=
   SID (ax : axis) : sensorId -> currSensor ax.
+
+(* --------------------------- *)
+
+
+
+(* ---------------------------- *)
+(* Listing 3.8 Isolation Status *)
 
 (*-----------------------------Isolation Status----------------------------*)
 (* iso x_ax (true,true,true) means all the sensors are isolated*)
@@ -20,11 +31,17 @@ Inductive AcquisitionIsolated : Type :=
 (* Communication (to OBC) status of each communication interface 3 for each OBC *)
 Inductive CommIsolated : Type :=
   CommIso : bool*bool*bool -> CommIsolated.
-                  
 
+
+(* ---------------------------- *)                  
+
+
+
+
+(* ----------------------------------- *)
+(* Listing 3.9 Cumulative Health count *)
 
 (*---------------------Cumulative Health Count-----------------------------*)
-
 
 Inductive SensorCumulativeHealthFailure : axis -> Type :=
   SenHFcount (ax : axis) : nat*nat*nat -> SensorCumulativeHealthFailure ax.
@@ -38,7 +55,13 @@ Inductive CumulativeHealthFailureAcq : Type :=
 Inductive CumulativeHealthFailureComm : Type :=
  CommHFcount : nat*nat*nat -> CumulativeHealthFailureComm.
 
+(* ----------------------------------- *)
 
+
+
+
+(* --------------------------------- *)
+(* Listing 3.10 Mis-comparison count *)
 
 (*----------------------------Miscomparison Count-------------------------*)
 
@@ -49,10 +72,15 @@ Inductive MiscomparisonCount : axis -> Type :=
 Inductive AllMiscomparisonCount : Type :=
   AllmisCount : (MiscomparisonCount x_ax)*(MiscomparisonCount y_ax)*(MiscomparisonCount z_ax) -> AllMiscomparisonCount.
 
+(* --------------------------------- *)
 
+
+
+(* ------------------------ *)
+(* Listing 3.11 Switch Flag *)
 
 Inductive OBCFlag : Type :=
 | raised : OBCFlag
 | notRaised : OBCFlag.
 
-
+(* ------------------------ *)
